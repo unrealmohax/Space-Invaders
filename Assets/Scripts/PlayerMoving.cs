@@ -10,8 +10,11 @@ public class PlayerMoving : MonoBehaviour
     private Rigidbody2D rigidbodyplayer;
     private Transform player;
 
+    [SerializeField] private SimpleTouchController leftController;
+
     private void Start()
     {
+        leftController = FindObjectOfType<SimpleTouchController>();
         rigidbodyplayer = GetComponent<Rigidbody2D>();
         player = transform;
     }
@@ -26,13 +29,10 @@ public class PlayerMoving : MonoBehaviour
         #endregion
 
         #region Мобильная версия
-        if (Input.touches.Length > 0)
+        if (leftController.GetTouchPosition.x != 0 || leftController.GetTouchPosition.y != 0)
         {
-            if (Input.touches[0].phase == TouchPhase.Moved)
-            {
-                Vector2 swipeDelta = Input.touches[0].position;
-                Move(swipeDelta);
-            }
+            Vector2 swipeDelta = leftController.GetTouchPosition;
+            Move(swipeDelta);
         }
         #endregion
     }

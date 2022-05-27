@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer() 
     {
-        Instantiate(player, spawnPlayer.position, Quaternion.identity);
+        GameObject Player = Instantiate(player, spawnPlayer.position, Quaternion.identity);
+        PlayerShooting playerShooting = Player.GetComponent<PlayerShooting>();
+        ButtonAttack.Instance.NewPlayer(playerShooting);
+        
     }
 }

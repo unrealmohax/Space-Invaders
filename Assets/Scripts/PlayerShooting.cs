@@ -12,14 +12,20 @@ public class PlayerShooting : MonoBehaviour
     {
         currTime += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Space)) 
+        if (Input.GetKey(KeyCode.Space))
         {
-            if (currTime > coolDown)
-            {
-                Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
-                GameManager.Instance.PlaySfx(shooting);
-                currTime = 0f;
-            }
+            Shoot();
         }
     }
+
+    public void Shoot() 
+    {
+        if (currTime > coolDown)
+        {
+            Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+            GameManager.Instance.PlaySfx(shooting);
+            currTime = 0f;
+        }
+    }
+
 }
